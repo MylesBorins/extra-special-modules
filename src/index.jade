@@ -1,0 +1,386 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Please wait... loading
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+
+  style.
+    .hello {
+      background-image: url('images/hello-tharr.gif')
+    }
+    .nye {
+      background-image: url('images/nye.gif')
+    }
+    .flag {
+      background-image: url('images/flag.gif')
+    }
+    .grumpy {
+      background-image: url('images/grumpy.gif')
+    }
+    .gethere {
+      background-image: url('images/gethere.gif')
+    }
+    .package {
+      background-image: url('images/package.gif')
+    }
+    .heart {
+      background-image: url('images/heart.gif')
+    }
+    .spidey {
+      background-image: url('images/spidey.jpg')
+    }
+    .universe {
+      background-image: url('images/universe.gif')
+    }
+    .land {
+      background-image: url('images/land.gif')
+    }
+    .danger {
+      background-image: url('images/danger.gif')
+    }
+    .danger2 {
+      background-image: url('images/danger2.gif')
+    }
+    .danger3 {
+      background-image: url('images/danger.gif')
+    }
+    .danger4 {
+      background-image: url('images/danger.gif')
+    }
+    .babel {
+      background-image: url('images/babel.gif')
+    }
+    .lemon {
+      background-image: url('images/lemon.gif')
+    }
+    .lolwut {
+      background-image: url('images/lolwut.gif')
+    }
+    .cowpath {
+      background-image: url('images/cowpath.jpg')
+    }
+
+
+  body
+
+    article
+
+      section
+        h2 Please wait... loading:
+        h4 A tale of two loaders
+        h3 With your host
+        h4
+          a(href='https://twitter.com/MylesBorins') @MylesBorins
+        p  JSConf.eu 2018
+        
+      section(data-bespoke-backdrop='hello')
+        h1 Hallo
+        
+      section
+        h1 My Name is Myles
+        img.headroom(src='images/me.jpg' alt='itsa me!' width='200px' height='200px')
+      
+      section
+        h3 I am gainfully employed by Google as a Developer Advocate
+        h4 Focusing on the Node.js ecosystem and GCP
+        
+        img(src='images/gcp.png' alt='Google Cloud Platform' style='background-color:white;')
+        
+        h5.headroom The opinions expressed in this talk are solely my own
+      
+      section
+        h2 Thank you Brad Farias
+        img.headroom(src='images/brad.jpg' alt='THANK YOU BRAD' style='background-color:white;')
+
+      section(data-bespoke-backdrop='nye')
+        h1 You can use ESM in Node.js Today!
+
+      section
+        h2 --experimental-modules
+
+      section
+        h2 About our current implementation
+        ul
+          li.hide
+          li Files have .mjs extension
+          li Support for Bare Imports
+          li You can import common.js
+          li You cannot require ESM
+          li Dynamic Import Coming Soon
+
+      section(data-bespoke-backdrop='grumpy')
+        h2 Some of our decisions may have made people grumpy
+
+      section(data-bespoke-backdrop='gethere')
+
+      section(data-bespoke-backdrop='package')
+        h2 ES4 introduced
+        h3 the concept of packages
+
+      section
+        h2 Similar to c++ namespaces
+        h3 Intent was to create something like the Java Jar System
+
+      section(data-bespoke-backdrop='heart')
+        h3 Ripped out of standards track
+        h2 Never seen again
+
+      section
+        h2 CommonJS is intoduced
+        h3 with members of TC39 working on it.
+        h4 Not on standards tracks
+        h5 Intended for Serverside JS
+
+      section(data-bespoke-backdrop='spidey')
+        h3 Node.js Implements
+        h2 a variant of CommmonJS
+
+      section
+        h1 Don't forget AMD
+      
+      section
+        h2 Only "spec'd" by requireJS
+        h3 More of a convention
+
+      section(data-bespoke-backdrop='universe')
+        h1 Why not UMD?
+
+      section(data-bespoke-backdrop='land')
+        h1 ESModules landed in ecma262 in 2015
+
+      section
+        h2 The Loader is not specified
+        h3 Implemented by embedder
+
+      section
+        h3 Loader is a generic term for a workflow
+        ul
+          li.hide
+          li Fetch
+          li Transform
+          li Evaluation Hook
+
+      section(data-bespoke-backdrop='danger')
+        h3 ⚠️  DANGER  ⚠️
+        h2 Behavior Difference
+        h2 Will Robinson
+        h3 ⚠️  DANGER  ⚠️
+
+      section
+        h3 CommonJS has
+        h2 Synchronous Load
+        h2 +
+        h2 Inline Execution
+
+      section
+        h1 No Load Step
+
+      section(data-bespoke-backdrop='babel')
+        h1 This is how babel was originally implemented
+
+      section
+        h3 ESModules specify
+        h2 Asynchronous Load
+        h2 +
+        h2 Synchronous Execution
+
+      section
+        h2 Load
+        ul
+          li.hide
+          li Fetch source texts for *all* the module graph
+          li Resolve specifiers within source texts
+
+      section
+        h2 Link
+        ul
+          li.hide
+          li Module Graph must be in memory
+          li Executed in pre-order traversal
+          
+      section
+        h2 Execution
+        ul
+          li.hide
+          li Requires linked be completed
+          li Done in post-order traversal
+
+      section
+        h1 They are not interchangeable
+
+      section(data-bespoke-backdrop='lemon')
+        h1 Can result in different execution order
+
+
+      section(data-bespoke-backdrop='danger2')
+        h3 ⚠️  DANGER  ⚠️
+        h2 Behavior Difference
+        h2 Will Robinson
+        h3 ⚠️  DANGER  ⚠️
+
+      section
+        h1 Resolution algorithm is different too!
+
+      section
+        h3 TC39 Leaves it up to hosting environment
+        h2 To determine Resolution
+
+      section
+        h1 For web it had to be URL based
+
+      section
+        h3 Node combines conventions of ecosystems
+        ul
+          li.hide
+          li Bare imports
+          li Import JSON
+          li Drop File Extension
+          li Import Directory
+
+      section(data-bespoke-backdrop='danger3')
+        h3 ⚠️  DANGER  ⚠️
+        h2 Behavior Difference
+        h2 Will Robinson
+        h3 ⚠️  DANGER  ⚠️
+
+      section
+        h1 The code executes differently too!
+        
+      section
+        h1 They have different goals
+
+      section(data-bespoke-backdrop='lolwut')
+
+      section
+        h3 In the ecmascript spec a “Goal” is a pairing
+        h2 of a top-level grammar and top-level execution mode
+
+      section
+        h2 4 Types of Goals
+        ul
+          li.hide 
+          li Script Strict
+          li Script Sloppy
+          li ESmodule
+          li Node.js Goal
+
+      section
+        h1 What is a top level grammar?
+
+      section
+        h2 Strict Mode vs Sloppy Mode
+        h3 Denoted with Pragma
+
+      section
+        h2 Module goal has extra grammar changes
+        ul
+          li.hide
+          li No HTML Comments
+          li Await is a reserved keyword
+          li Divergence may increase over time
+
+      section
+        h3 ESModules do not have in source way
+        h2 of determining goal
+
+      section
+        h2 Potential Future Goals
+        ul
+          li.hide
+          li BinaryAST
+          li WASM
+          li WebPackage
+          li HTML Modules
+
+      section(data-bespoke-backdrop='cowpath')
+        h1 Paving a cowpath
+
+      section
+        h1 Interoperability
+
+      section
+        h2 Loading ESM from CJS
+        ul
+          li.hide
+          li `import(esm)` will work!
+          li Cannot require(esm)
+
+      section
+        h2 Loading CJS from ESM
+        ul
+          li.hide
+          li `import fs from "fs"`
+          li no named imports
+          li named exports for core possible
+          li userland modules only provide "default"
+          li Can be fixed with restrictions
+
+      section(data-bespoke-backdrop='danger4')
+        h3 ⚠️  DANGER  ⚠️
+        h2 Behavior Difference
+        h2 Will Robinson
+        h3 ⚠️  DANGER  ⚠️
+
+      section
+        h3 ESM does not have a way
+        h2 to inject lexically scope variables
+
+      section
+        h1 CJS has lexically scoped variables
+      
+      section
+        h2 Lexically scoped variables include
+        ul
+          li.hide
+          li __filename
+          li __dirname
+          li require
+          li module
+
+      section
+        h1 import.meta to the rescue
+
+      section
+        h1 The Future
+
+      section
+        h2 ESM is one of many goals
+      
+      section
+        h3 Hooks are coming to
+        h2 Node.js + Web
+        ul
+          li.hide
+          li Resolve Hook
+          li Evaluation Hook
+          li No Transform Hook
+          li Hooks will deopt
+      
+      section
+        h1 Loading Snapshots!!!
+      
+      section
+        h3 .mjs is in IETF Standard track
+        ul
+          li.hide
+          li Will land in official mime registry
+          li mime types determined by file extension
+
+      section
+        h1 .js will always be ambiguous
+
+      section
+        h1 Examining workflow pain
+
+      section
+        h1 Welcome to the future
+
+      section
+        h2 Thank You
+        img.headroom(src='images/best-gif-evar.gif' alt='a surfing puppy' width='20%')
+        h4 @MylesBorins
+
+    script(src='build/build.js')
