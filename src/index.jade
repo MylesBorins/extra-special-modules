@@ -126,7 +126,7 @@ html
       section
         h2 Bare Imports
         h3 The ability to require a module by it's name
-        h3 e.g. `import 'lodash'`
+        h3 e.g. require('underscore') or import 'lodash'
 
       section
         h2 Existential Dread
@@ -197,7 +197,7 @@ html
         h1 No Load Step
 
       section(data-bespoke-backdrop='babel')
-        h1 This is how babel was originally implemented
+        h1 This is how babel was originally implemented esm
 
       section
         h3 ESModules specify
@@ -255,6 +255,15 @@ html
         h3 TC39 Leaves it up to hosting environment
         h2 To determine Resolution
 
+      section
+        h2 Node.js's resolution algorithm supports:
+        ul
+          li.hide
+          li Bare imports
+          li Import JSON
+          li Drop File Extension
+          li Import Directory
+
       section(data-bespoke-backdrop='bear')
         h1 Currently the web does not support bare imports
 
@@ -268,15 +277,6 @@ html
           li deep module traversal by filename
           li No directory imports
           li No dropping of file extensions
-
-      section
-        h3 Node combines conventions of ecosystems
-        ul
-          li.hide
-          li Bare imports
-          li Import JSON
-          li Drop File Extension
-          li Import Directory
 
       section(data-bespoke-backdrop='danger3')
         h3 ⚠️  DANGER  ⚠️
@@ -352,6 +352,9 @@ html
           li no named imports
           li userland modules only provide "default"
 
+      section
+        h1 Maybe import.meta.require?
+
       section(data-bespoke-backdrop='danger4')
         h3 ⚠️  DANGER  ⚠️
         h2 Behavior Difference
@@ -382,9 +385,6 @@ html
 
       section
         h2 ESM is one of many goals
-
-      //- section
-      //-   h1 Loading Snapshots!!!
       
       section
         h3 .mjs is in IETF Standard track
