@@ -82,7 +82,7 @@ html
         h3 With your host
         h4
           a(href='https://twitter.com/MylesBorins') @MylesBorins
-        p  Node.js Denver
+        p  QueensJS October 2018
         
       section(data-bespoke-backdrop='hello')
         h1 oh hai
@@ -261,7 +261,7 @@ html
           li.hide
           li Bare imports
           li Import JSON
-          li Drop File Extension
+          li Optional File Extensions
           li Import Directory
 
       section(data-bespoke-backdrop='bear')
@@ -276,7 +276,7 @@ html
           li bare imports
           li deep module traversal by filename
           li No directory imports
-          li No dropping of file extensions
+          li No file extension resolution
 
       section(data-bespoke-backdrop='danger3')
         h3 ⚠️  DANGER  ⚠️
@@ -332,6 +332,28 @@ html
       section(data-bespoke-backdrop='cowpath')
         h1 Paving a cowpath
 
+      section(data-bespoke-backdrop='nye')
+        h1 You can use ESM in Node.js Today!
+      
+      section(data-bespoke-backdrop='nye')
+        h1 WITH A FLAG
+
+      section
+        h2 --experimental-modules
+
+      section
+        h2 About our current implementation
+        ul
+          li.hide
+          li everything is behind a flag
+          li Support for named exports for core modules
+          li ESM files need to use .mjs extension
+          li Support for Bare Imports
+          li Support for transparent interop in ESM but no named exports
+          li No support for transparent interop in CJS
+          li Support for dynamic import in both ESM & CJS
+          li Support for import.meta
+
       section
         h1 Interoperability
 
@@ -351,9 +373,6 @@ html
           li `import thing from "cjs"`
           li no named imports
           li userland modules only provide "default"
-
-      section
-        h1 Maybe import.meta.require?
 
       section(data-bespoke-backdrop='danger4')
         h3 ⚠️  DANGER  ⚠️
@@ -380,6 +399,44 @@ html
       section
         h1 import.meta to the rescue
 
+      section
+        h1 Expect any of this to change at any time
+
+      section
+        h1 Minimal Kernal
+
+      section
+        h2 Changes from current implementation
+        ul
+          li.hide
+          li Can only import ESM
+          li Must have .mjs file extension
+          li No importing directories
+          li No support for package.main
+          //- li no loaders
+          //- li no vm.module
+
+      section
+        h1 CJS Interop
+      
+      section.small-code
+        pre
+          code.language-javascript.
+            // cjs.js
+            module.exports = 'cjs';
+
+            // esm.mjs
+            import { createRequireFromPath as createRequire } from 'module';
+            import { fileURLToPath as fromPath } from 'url';
+
+            const require = createRequire(fromPath(import.meta.url));
+
+            const cjs = require('./cjs');
+            cjs === 'cjs'; // true
+
+      //- section
+        h1 Maybe import.meta.require?
+
       //- section
       //-   h1 The Future
       //-
@@ -395,32 +452,12 @@ html
       //-
       //- section
       //-   h1 .js will always be ambiguous
-
-
-      section(data-bespoke-backdrop='nye')
-        h1 You can use ESM in Node.js Today!
-
-      section
-        h2 --experimental-modules
+      //-
+      //- section(data-bespoke-backdrop='grumpy')
+      //-   h2 Some of our decisions may have made people grumpy
 
       section
-        h2 About our current implementation
-        ul
-          li.hide
-          li everything is behind a flag
-          li Support for named exports for core modules
-          li ESM files need to use .mjs extension
-          li Support for Bare Imports
-          li Support for transparent interop in ESM but no named exports
-          li No support for transparent interop in CJS
-          li Support for dynamic import in both ESM & CJS
-          li Support for import.meta
-
-      section(data-bespoke-backdrop='grumpy')
-        h2 Some of our decisions may have made people grumpy
-
-      section
-        h1 Enter the Node.js Modules Team
+        h1 Node.js Modules Team
 
       section
         h1 42 members
