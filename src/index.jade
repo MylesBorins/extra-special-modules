@@ -71,6 +71,12 @@ html
     .bear {
       background-image: url('images/bear.gif')
     }
+    .fork {
+      background-image: url('images/fork.gif')
+    }
+    .kernel {
+      background-image: url('images/kernel.gif')
+    }
 
   body
 
@@ -332,10 +338,10 @@ html
       section(data-bespoke-backdrop='cowpath')
         h1 Paving a cowpath
 
-      section(data-bespoke-backdrop='nye')
+      section
         h1 You can use ESM in Node.js Today!
       
-      section(data-bespoke-backdrop='nye')
+      section
         h1 WITH A FLAG
 
       section
@@ -345,11 +351,10 @@ html
         h2 About our current implementation
         ul
           li.hide
-          li everything is behind a flag
           li Support for named exports for core modules
           li ESM files need to use .mjs extension
           li Support for Bare Imports
-          li Support for transparent interop in ESM but no named exports
+          li Support for Transparent Interop in ESM but no named exports
           li No support for transparent interop in CJS
           li Support for dynamic import in both ESM & CJS
           li Support for import.meta
@@ -364,49 +369,45 @@ html
           li dynamic `import(esm)` in cjs
           li Cannot require(esm)
 
-      section
-        h2 Loading CJS from ESM
-        ul
-          li.hide
-          li `import fs from "fs"`
-          li support for named imports for core modules
-          li `import thing from "cjs"`
-          li no named imports
-          li userland modules only provide "default"
-
-      section(data-bespoke-backdrop='danger4')
-        h3 ⚠️  DANGER  ⚠️
-        h2 Behavior Difference
-        h2 Will Robinson
-        h3 ⚠️  DANGER  ⚠️
-
-      section
-        h3 ESM does not have a way
-        h2 to inject lexically scope variables
-
-      section
-        h1 CJS has lexically scoped variables
-      
-      section
-        h2 Lexically scoped variables include
-        ul
-          li.hide
-          li __filename
-          li __dirname
-          li require
-          li module
-
-      section
-        h1 import.meta to the rescue
+      //- section(data-bespoke-backdrop='danger4')
+      //-   h3 ⚠️  DANGER  ⚠️
+      //-   h2 Behavior Difference
+      //-   h2 Will Robinson
+      //-   h3 ⚠️  DANGER  ⚠️
+      //-
+      //- section
+      //-   h3 ESM does not have a way
+      //-   h2 to inject lexically scope variables
+      //-
+      //- section
+      //-   h1 CJS has lexically scoped variables
+      //-
+      //- section
+      //-   h2 Lexically scoped variables include
+      //-   ul
+      //-     li.hide
+      //-     li __filename
+      //-     li __dirname
+      //-     li require
+      //-     li module
+      //-
+      //- section
+      //-   h1 import.meta to the rescue
 
       section
         h1 Expect any of this to change at any time
 
-      section
+      section(data-bespoke-backdrop='kernel')
         h1 Minimal Kernal
 
+      section(data-bespoke-backdrop='nye')
+        h1 OMG LANDED TODAY
+        
+      section(data-bespoke-backdrop='fork')
+        h1 in a fork
+
       section
-        h2 Changes from current implementation
+        h2 Phase 1
         ul
           li.hide
           li Can only import ESM
@@ -433,6 +434,18 @@ html
 
             const cjs = require('./cjs');
             cjs === 'cjs'; // true
+
+      section
+        h2 Phase 2
+        h3 Uncontencious UX enhancements
+
+      section
+        h2 Phase 3
+        h3 Custom Loaders
+
+      section
+        h2 Phase 4
+        h3 All the other shit we can't agree on
 
       //- section
         h1 Maybe import.meta.require?
