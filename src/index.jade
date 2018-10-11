@@ -63,7 +63,7 @@ html
       background-image: url('images/cowpath.jpg')
     }
     .gloss {
-      background-image: url('images/gloss.gif')
+      background-image: url('images/lol-gloss.gif')
     }
     .loader {
       background-image: url('images/loader.gif')
@@ -77,6 +77,73 @@ html
     .kernel {
       background-image: url('images/kernel.gif')
     }
+    .esm-drawn {
+      background-image: url('images/esm-drawn.jpg')
+    }
+    .cjs-drawn {
+      background-image: url('images/cjs-drawn.jpg')
+    }
+    .interop {
+      background-image: url('images/interop.jpg')
+    }
+    .transparent-interop {
+      background-image: url('images/transparent-interop.jpg')
+    }
+    .goal {
+      background-image: url('images/goal.gif')
+    }
+    .bears {
+      background-image: url('images/bears.gif')
+    }
+    .specifier {
+      background-image: url('images/specifier.jpg')
+    }
+    .skeleton-package {
+      background-image: url('images/skeleton-package.gif')
+    }
+    .rip {
+      background-image: url('images/rip.gif')
+    }
+    .landed {
+      background-image: url('images/landed.gif')
+    }
+    .graph {
+      background-image: url('images/graph.jpg')
+    }
+    .pre-one {
+      background-image: url('images/graph-preorder-1.jpg')
+    }
+    .pre-two {
+      background-image: url('images/graph-preorder-2.jpg')
+    }
+    .pre-three {
+      background-image: url('images/graph-preorder-3.jpg')
+    }
+    .pre-four {
+      background-image: url('images/graph-preorder-4.jpg')
+    }
+    .pre-five {
+      background-image: url('images/graph-preorder-5.jpg')
+    }
+    .post-one {
+      background-image: url('images/graph-postorder-1.jpg')
+    }
+    .post-two {
+      background-image: url('images/graph-postorder-2.jpg')
+    }
+    .post-three {
+      background-image: url('images/graph-postorder-3.jpg')
+    }
+    .post-four {
+      background-image: url('images/graph-postorder-4.jpg')
+    }
+    .post-five {
+      background-image: url('images/graph-postorder-5.jpg')
+    }
+    .modules-team-init {
+      background-image: url('images/modules-team-init.png')
+    }
+    
 
   body
 
@@ -105,33 +172,41 @@ html
         
         h5.headroom The opinions expressed in this talk are solely my own
 
-      section(data-bespoke-backdrop='gloss')
+      section
         h1 A glossary
 
-      section
+      section(data-bespoke-backdrop='esm-drawn')
         h2 ESM
         h3 ECMA Script Modules
 
-      section
+      section(data-bespoke-backdrop='cjs-drawn')
         h2 CJS
         h3 CommonJS Modules
 
-      section
+      section(data-bespoke-backdrop='interop')
         h2 Interoperability
         h3 The ability to access ESM modules from CJS and vice versa
 
-      section
+      section(data-bespoke-backdrop='transparent-interop')
         h2 Transparent Interoperability
         h3 The ability to require ESM in CJS and import CJS in ESM
         h3 without having to know the module type of dependency
 
-      section
+      section(data-bespoke-backdrop='goal')
         h2 “Goal”
         h3 a pairing of a top-level grammar and top-level execution mode
 
+      section(data-bespoke-backdrop='specifier')
+        h2 Specifier
+        h3 A string that the runtime will use to locate a module
+
       section
+        h2 Specifier Resolution
+        h3 The algorithm to convert a specifier into a path to a modul
+
+      section(data-bespoke-backdrop='bears')
         h2 Bare Imports
-        h3 The ability to require a module by it's name
+        h3 A specifier that does not start with a relative or absolute path
         h3 e.g. require('underscore') or import 'lodash'
 
       section
@@ -140,7 +215,7 @@ html
 
       section(data-bespoke-backdrop='gethere')
 
-      section(data-bespoke-backdrop='package')
+      section(data-bespoke-backdrop='skeleton-package')
         h2 ES4 introduced
         h3 the concept of packages
 
@@ -148,7 +223,7 @@ html
         h2 Similar to c++ namespaces
         h3 Intent was to create something like the Java Jar System
 
-      section(data-bespoke-backdrop='heart')
+      section(data-bespoke-backdrop='rip')
         h3 Ripped out of standards track
         h2 Never seen again
 
@@ -158,7 +233,7 @@ html
         h4 Not on standards tracks
         h5 Intended for Serverside JS
 
-      section(data-bespoke-backdrop='spidey')
+      section
         h3 Node.js Implements
         h2 a variant of CommmonJS
 
@@ -172,11 +247,47 @@ html
       section(data-bespoke-backdrop='universe')
         h1 Why not UMD?
 
-      section(data-bespoke-backdrop='land')
+      section(data-bespoke-backdrop='landed')
         h1 ESModules landed in ecma262 in 2015
 
+      section
+        h1 You can use ESM in Node.js Today!
+      
+      section
+        h1 WITH A FLAG
+
+      section
+        h2 --experimental-modules
+
+      section
+        h2 About our current implementation
+        ul
+          li.hide
+          li Expect it to change at any time
+          li Support for named exports for core modules
+          li ESM files need to use .mjs extension
+          li Support for Bare Imports
+          li Support for Transparent Interop in ESM but no named exports
+          li No support for transparent interop in CJS
+          li Support for dynamic import in both ESM & CJS
+          li Support for import.meta
+
+      //- section
+      //-   h1 Interoperability
+      //-
+      //- section
+      //-   h2 Loading ESM from CJS
+      //-   ul
+      //-     li.hide
+      //-     li dynamic `import(esm)` in cjs
+      //-     li Cannot require(esm)
+
+      section(data-bespoke-backdrop='grumpy')
+        h2 Some of our decisions may have made people grumpy
+
       section(data-bespoke-backdrop='loader')
-        h1 So what's a loader?
+        h3 Please wait...
+        h2 Explanation Loading
 
       section
         h2 Loader
@@ -212,15 +323,6 @@ html
         h2 Synchronous Execution
 
       section
-        h2 Top-Level Await
-        h3 could change synchronous execution guarantee
-        h4 come ask me about this later
-
-      section
-        h2 The Loader is not specified
-        h3 Implemented by embedder
-
-      section
         h2 Load
         ul
           li.hide
@@ -232,19 +334,48 @@ html
         ul
           li.hide
           li Module Graph must be in memory
-          li Executed in pre-order traversal
-          
+          li Executed in pre-order traversal (Root, Left, Right)
+
+      section(data-bespoke-backdrop='graph')
+        //- img.headroom(src='images/graph.jpg' alt='A graph. Root depends on A and B. A depends on C and D.' width='60%')
+
+      section(data-bespoke-backdrop='pre-one')
+        //- img.headroom(src='images/graph-preorder-1.jpg' alt='first node travelled to' width='60%')
+      section(data-bespoke-backdrop='pre-two')
+        //- img.headroom(src='images/graph-preorder-2.jpg' alt='second node travelled to' width='60%')
+      section(data-bespoke-backdrop='pre-three')
+        //- img.headroom(src='images/graph-preorder-3.jpg' alt='third node travelled to' width='60%')
+      section(data-bespoke-backdrop='pre-four')
+        //- img.headroom(src='images/graph-preorder-4.jpg' alt='fourth node travelled to' width='60%')
+      section(data-bespoke-backdrop='pre-five')
+        //- img.headroom(src='images/graph-preorder-5.jpg' alt='fifth node travelled to' width='60%')
       section
         h2 Execution
         ul
           li.hide
           li Requires linked be completed
-          li Done in post-order traversal
+          li Done in post-order traversal (Left, Right, Root)
+
+      section(data-bespoke-backdrop='graph')
+      section(data-bespoke-backdrop='post-one')
+      section(data-bespoke-backdrop='post-two')
+      section(data-bespoke-backdrop='post-three')
+      section(data-bespoke-backdrop='post-four')
+      section(data-bespoke-backdrop='post-five')
+
+      section
+        h2 Top-Level Await
+        h3 could change synchronous execution guarantee
+        h4 come ask me about this later
+
+      section
+        h2 The Loader is not specified
+        h3 Implemented by embedder
 
       section
         h1 They are not interchangeable
 
-      section(data-bespoke-backdrop='lemon')
+      section
         h1 Can result in different execution order
 
       //- section(data-bespoke-backdrop='danger2')
@@ -335,40 +466,8 @@ html
           li WebPackage
           li HTML Modules
 
-      section(data-bespoke-backdrop='cowpath')
-        h1 Paving a cowpath
-
       section
-        h1 You can use ESM in Node.js Today!
-      
-      section
-        h1 WITH A FLAG
-
-      section
-        h2 --experimental-modules
-
-      section
-        h2 About our current implementation
-        ul
-          li.hide
-          li Support for named exports for core modules
-          li ESM files need to use .mjs extension
-          li Support for Bare Imports
-          li Support for Transparent Interop in ESM but no named exports
-          li No support for transparent interop in CJS
-          li Support for dynamic import in both ESM & CJS
-          li Support for import.meta
-
-      section
-        h1 Interoperability
-
-      section
-        h2 Loading ESM from CJS
-        ul
-          li.hide
-          li dynamic `import(esm)` in cjs
-          li Cannot require(esm)
-
+        h1 So what happened next?
       //- section(data-bespoke-backdrop='danger4')
       //-   h3 ⚠️  DANGER  ⚠️
       //-   h2 Behavior Difference
@@ -395,79 +494,14 @@ html
       //-   h1 import.meta to the rescue
 
       section
-        h1 Expect any of this to change at any time
+        h3 Introducing
+        h2 The Node.js Modules Team
 
-      section(data-bespoke-backdrop='kernel')
-        h1 Minimal Kernal
-
-      section
-        h2 Phase 1
-        ul
-          li.hide
-          li Can only import ESM
-          li Must have .mjs file extension
-          li No importing directories
-          li No support for package.main
-          //- li no loaders
-          //- li no vm.module
+      section(data-bespoke-backdrop='modules-team-init')
+        h2 Formed 10 months ago
 
       section
-        h1 CJS Interop
-      
-      section.small-code
-        pre
-          code.language-javascript.
-            // cjs.js
-            module.exports = 'cjs';
-
-            // esm.mjs
-            import { createRequireFromPath as createRequire } from 'module';
-            import { fileURLToPath as fromPath } from 'url';
-
-            const require = createRequire(fromPath(import.meta.url));
-
-            const cjs = require('./cjs');
-            cjs === 'cjs'; // true
-
-      section
-        h2 Phase 2
-        h3 Uncontencious UX enhancements
-
-      section
-        h2 Phase 3
-        h3 Custom Loaders
-
-      section
-        h2 Phase 4
-        h3 All the other shit we can't agree on
-
-      //- section
-        h1 Maybe import.meta.require?
-
-      //- section
-      //-   h1 The Future
-      //-
-      //- section
-      //-   h2 ESM is one of many goals
-      //-
-      //- section
-      //-   h3 .mjs is in IETF Standard track
-      //-   ul
-      //-     li.hide
-      //-     li Will land in official mime registry
-      //-     li mime types determined by file extension
-      //-
-      //- section
-      //-   h1 .js will always be ambiguous
-      //-
-      //- section(data-bespoke-backdrop='grumpy')
-      //-   h2 Some of our decisions may have made people grumpy
-
-      section
-        h1 Node.js Modules Team
-
-      section
-        h1 42 members
+        h1 49 members
 
       section
         h3 Representation from at least 10 countries:
@@ -532,6 +566,70 @@ html
           li tc39
           li whatwg
           li w3c
+
+      section(data-bespoke-backdrop='kernel')
+        h1 Minimal Kernal
+
+      section
+        h2 Phase 1
+        ul
+          li.hide
+          li Can only import ESM
+          li Must have .mjs file extension
+          li No support for Node.js specifier resolution algorithm
+
+      section
+        h1 That's it
+
+      section
+        h1 CJS Interop
+      
+      section.small-code
+        pre
+          code.language-javascript.
+            // cjs.js
+            module.exports = 'cjs';
+
+            // esm.mjs
+            import { createRequireFromPath as createRequire } from 'module';
+            import { fileURLToPath as fromPath } from 'url';
+
+            const require = createRequire(fromPath(import.meta.url));
+
+            const cjs = require('./cjs');
+            cjs === 'cjs'; // true
+
+      section
+        h2 Phase 2
+        h4 Uncontentious features to enhance UX
+
+      section
+        h2 Phase 3
+        h4 Extensible "loaders" and deliver an environment that allows user-land experimentation.
+
+      section
+        h2 Phase 4
+        h4 Addressing the user feedback gathered from the experimentation enabled by Phase 3.
+
+      //- section
+        h1 Maybe import.meta.require?
+
+      //- section
+      //-   h1 The Future
+      //-
+      //- section
+      //-   h2 ESM is one of many goals
+      //-
+      //- section
+      //-   h3 .mjs is in IETF Standard track
+      //-   ul
+      //-     li.hide
+      //-     li Will land in official mime registry
+      //-     li mime types determined by file extension
+      //-
+      //- section
+      //-   h1 .js will always be ambiguous
+      //-
 
       section
         h2 We are all hard at work
