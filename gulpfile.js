@@ -1,24 +1,27 @@
 'use strict';
+const path = require('path');
 
-var pkg = require('./package.json'),
-  gutil = require('gulp-util'),
-  plumber = require('gulp-plumber'),
-  rename = require('gulp-rename'),
-  connect = require('gulp-connect'),
-  browserify = require('gulp-browserify'),
-  uglify = require('gulp-uglify'),
-  jade = require('gulp-jade'),
-  stylus = require('gulp-stylus'),
-  autoprefixer = require('gulp-autoprefixer'),
-  csso = require('gulp-csso'),
-  del = require('del'),
-  through = require('through'),
-  opn = require('opn'),
-  ghpages = require('gh-pages'),
-  path = require('path'),
-  isDist = process.argv.indexOf('serve') === -1;
+const {
+  series,
+  parallel,
+  watch,
+  src,
+  dest
+} = require('gulp');
 
-const {series, parallel, watch, src, dest} = require('gulp');
+const autoprefixer = require('gulp-autoprefixer');
+const browserify = require('gulp-bro');
+const connect = require('gulp-connect');
+const csso = require('gulp-csso');
+const del = require('del');
+const jade = require('gulp-pug');
+const plumber = require('gulp-plumber');
+const rename = require('gulp-rename');
+const stylus = require('gulp-stylus');
+const through = require('through');
+const uglify = require('gulp-uglify');
+
+const isDist = process.argv.indexOf('serve') === -1;
 
 async function cleanJS() {
   await del('dist/build/build.js');
