@@ -205,7 +205,7 @@ html
 
       section
         h2 Specifier Resolution
-        h3 The algorithm to convert a specifier into a path to a modul
+        h3 The algorithm to convert a specifier into a path to a module
 
       section(data-bespoke-backdrop='bears')
         h2 Bare Imports
@@ -214,7 +214,7 @@ html
 
       section(data-bespoke-backdrop='dual-mode')
         h2 Dual-Mode modules
-        h3 Supporting a CommonJS and ESM entrypoint
+        h3 Supporting both a CommonJS and ESM entry point
         h3 With a single specifier
 
       section
@@ -239,7 +239,7 @@ html
         h2 CommonJS is introduced
         h3 with members of TC39 working on it.
         h4 Not on standards tracks
-        h5 Intended for Serverside JS
+        h5 Intended for serverside JS
 
       section
         h3 Node.js Implements
@@ -310,17 +310,23 @@ html
           li Executed in pre-order traversal (Root, Left, Right)
 
       section(data-bespoke-backdrop='graph')
+      //- section
         //- img.headroom(src='images/graph.jpg' alt='A graph. Root depends on A and B. A depends on C and D.' width='60%')
 
       section(data-bespoke-backdrop='pre-one')
+      //- section
         //- img.headroom(src='images/graph-preorder-1.jpg' alt='first node travelled to' width='60%')
       section(data-bespoke-backdrop='pre-two')
+      //- section
         //- img.headroom(src='images/graph-preorder-2.jpg' alt='second node travelled to' width='60%')
       section(data-bespoke-backdrop='pre-three')
+      //- section
         //- img.headroom(src='images/graph-preorder-3.jpg' alt='third node travelled to' width='60%')
       section(data-bespoke-backdrop='pre-four')
+      //- section
         //- img.headroom(src='images/graph-preorder-4.jpg' alt='fourth node travelled to' width='60%')
       section(data-bespoke-backdrop='pre-five')
+      //- section
         //- img.headroom(src='images/graph-preorder-5.jpg' alt='fifth node travelled to' width='60%')
       section
         h2 Execution
@@ -388,6 +394,16 @@ html
           li deep module traversal by filename
           li deep module traversal by reference
 
+      section.small-code
+        pre
+          code.language-javascript.
+            {
+              "imports": {
+                "moment": "/node_modules/moment/src/moment.js",
+                "lodash": "/node_modules/lodash-es/lodash.js"
+              }
+            }
+
       section
         h2 import-maps
         h4.headroom You can use in Chrome today
@@ -439,10 +455,10 @@ html
         h2 Potential Future Goals
         ul
           li.hide
-          li BinaryAST
           li WASM
-          li WebPackage
           li HTML Modules
+          li WebPackage
+          li BinaryAST
 
       //- section
       //-   h1 So what happened next?
@@ -497,8 +513,9 @@ html
           li.hide
           li Full file path is mandatory
           li No support for folder resolution
-          li Ability to import CJS, default only
-          li You cannot require('esm')
+          li No named imports for `import 'cjs'`
+          li Only experimental support for `import 'json'`
+          li No support for `require('esm')`
 
       //- section
       //-   h1 Interoperability
@@ -510,8 +527,8 @@ html
       //-     li dynamic `import(esm)` in cjs
       //-     li Cannot require(esm)
 
-      section(data-bespoke-backdrop='grumpy')
-        h2 Some of our decisions may have made people grumpy
+      //- section(data-bespoke-backdrop='grumpy')
+      //-   h2 Some of our decisions may have made people grumpy
 
       //- section
       //-   h3 Introducing
@@ -660,11 +677,56 @@ html
           li JSON Modules
           li WASM Modules
 
+      section.small-code
+        h2 Package Exports
+        pre
+          code.language-javascript.
+            {
+              "main": "index-legacy.cjs",
+              "type": "module",
+              "exports": {
+                "./": "./index.js",
+                "./cjs": "./index.cjs"
+              }
+            }
+
+      section.small-code
+        h3 Conditional Exports (Experimental)
+        h4 https://github.com/nodejs/node/pull/29978/
+        pre
+          code.language-javascript.
+            {
+              "main": "index-legacy.cjs",
+              "type": "module",
+              "exports": {
+                "./": {
+                  "module": "./index.js",
+                  "node": "./index.cjs",
+                  "browser": "./index-browser"
+                }
+              }
+            }
+
+      section.small-code
+        h3 Self Reference (Experimental)
+        h4 --experimental-resolve-self
+        pre
+          code.language-javascript.
+            {
+              "name": "cool-module",
+              "exports": {
+                "./": "./index.mjs",
+                "./feature": "./path/to/feature.mjs"
+              }
+            }
+
+            import {wow} from 'cool-module/feature'
+
       section
         h2 Roadmap:
         ul
           li.hide
-          li Unflag in Node.js 13 between q4 19' and q1 20'
+          li Unflag in Node.js 13 between Q4 19' and Q1 20'
           li Backport all changes to 12 LTS
           li Unflag in 12 during Active LTS
 
@@ -672,6 +734,7 @@ html
         h2 We are all hard at work
         h3 to ensure modules
         h4 is a best in class experience in Node.js
+        h3 and a good base for universal packages
 
       section
         h2 Thank You
