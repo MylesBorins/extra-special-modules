@@ -143,6 +143,9 @@ html
     .modules-team-init {
       background-image: url('images/modules-team-init.png')
     }
+    .dual-mode {
+      background-image: url('images/dual-mode.gif')
+    }
     
 
   body
@@ -209,6 +212,11 @@ html
         h3 A specifier that does not start with a relative or absolute path
         h3 e.g. require('underscore') or import 'lodash'
 
+      section(data-bespoke-backdrop='dual-mode')
+        h2 Dual-Mode modules
+        h3 Supporting a CommonJS and ESM entrypoint
+        h3 With a single specifier
+
       section
         h2 Existential Dread
         h3 The feeling I get trying to get CJS and ESM to play nicely together
@@ -228,7 +236,7 @@ html
         h2 Never seen again
 
       section
-        h2 CommonJS is intoduced
+        h2 CommonJS is introduced
         h3 with members of TC39 working on it.
         h4 Not on standards tracks
         h5 Intended for Serverside JS
@@ -263,14 +271,21 @@ html
         h2 About our current implementation
         ul
           li.hide
-          li Expect it to change at any time
-          li Support for named exports for core modules
+          li Getting close to stable, but could still change
+          li ECMASCript compliant implementation
           li ESM files need to use .mjs extension
+          li Unless you set type to module in package.json
           li Support for Bare Imports
-          li Support for Transparent Interop in ESM but no named exports
-          li No support for transparent interop in CJS
           li Support for dynamic import in both ESM & CJS
-          li Support for import.meta
+
+      section
+        h2 What are the limitations?
+        ul
+          li.hide
+          li Full file path is mandetory
+          li No support for index.js
+          li Ability to import CJS, default only
+          li You cannot require('esm')
 
       //- section
       //-   h1 Interoperability
@@ -365,7 +380,7 @@ html
 
       section
         h2 Top-Level Await
-        h3 could change synchronous execution guarantee
+        h3 Changes synchronous execution guarantee
         h4 come ask me about this later
 
       section
@@ -405,16 +420,20 @@ html
         h1 Currently the web does not support bare imports
 
       section
-        h2 There is a proposal for "package-name-maps"
-        h3 https://github.com/domenic/package-name-maps
-        h3 Which would allow browsers to support:
+        h2 import-maps
+        h3 https://github.com/WICG/import-maps/
+        h4 Will allow browsers to support:
         ul
           li.hide
           li bare imports
           li deep module traversal by filename
-          li No directory imports
-          li No file extension resolution
+          li deep module traversal by reference
 
+      section
+        h2 import-maps
+        h4.headroom You can use in Chrome today
+        h2 chrome://flags
+        h4.headroom Built-in module infra and import maps
       //- section(data-bespoke-backdrop='danger3')
       //-   h3 ⚠️  DANGER  ⚠️
       //-   h2 Behavior Difference
@@ -466,150 +485,149 @@ html
           li WebPackage
           li HTML Modules
 
-      section
-        h1 So what happened next?
+      //- section
+      //-   h1 So what happened next?
       //- section(data-bespoke-backdrop='danger4')
       //-   h3 ⚠️  DANGER  ⚠️
       //-   h2 Behavior Difference
       //-   h2 Will Robinson
       //-   h3 ⚠️  DANGER  ⚠️
       //-
+      section
+        h3 ESM does not have a way
+        h2 to inject lexically scope variables
+
+      section
+        h1 CJS has lexically scoped variables
+
+      section
+        h2 Lexically scoped variables include
+        ul
+          li.hide
+          li __filename
+          li __dirname
+          li require
+          li module
+
+      section
+        h1 import.meta to the rescue
+
       //- section
-      //-   h3 ESM does not have a way
-      //-   h2 to inject lexically scope variables
+      //-   h3 Introducing
+      //-   h2 The Node.js Modules Team
+      //-
+      //- section(data-bespoke-backdrop='modules-team-init')
+      //-   h2 Formed 10 months ago
       //-
       //- section
-      //-   h1 CJS has lexically scoped variables
+      //-   h1 49 members
       //-
       //- section
-      //-   h2 Lexically scoped variables include
+      //-   h3 Representation from at least 10 countries:
       //-   ul
       //-     li.hide
-      //-     li __filename
-      //-     li __dirname
-      //-     li require
-      //-     li module
+      //-     li Canada
+      //-     li China
+      //-     li Germany
+      //-     li Israel
+      //-     li Italy
+      //-     li Japan
+      //-     li Nigeria
+      //-     li United Kingdom
+      //-     li South Africa
+      //-     li USA
       //-
       //- section
-      //-   h1 import.meta to the rescue
+      //-   h3 Representation from at least 10 corporate organizations:
+      //-   ul
+      //-     li.hide
+      //-     li airbnb
+      //-     li applitools
+      //-     li Bloomberg
+      //-     li Godaddy
+      //-     li Google
+      //-     li Groupon
+      //-     li IBM
+      //-     li Microsoft
+      //-     li Mozilla
+      //-     li NearForm
+      //-     li Node Source
+      //-
+      //- section
+      //-   h3 Key stakeholders from at least 14 OSS projects
+      //-   ul
+      //-     li.hide
+      //-     li angular
+      //-     li babel
+      //-     li bluebird
+      //-     li fastify
+      //-     li libuv
+      //-     li jQuery
+      //-     li jspm
+      //-
+      //- section
+      //-   h3 Key stakeholders from at least 14 OSS projects
+      //-   ul
+      //-     li.hide
+      //-     li lodash
+      //-     li Meteor
+      //-     li npm
+      //-     li polymer
+      //-     li tapjs
+      //-     li V8
+      //-     li webpack
+      //-
+      //- section
+      //-   h3 Members of the team participate
+      //-   h3 in at least 3 standards bodies including:
+      //-   ul
+      //-     li.hide
+      //-     li tc39
+      //-     li whatwg
+      //-     li w3c
 
-      section
-        h3 Introducing
-        h2 The Node.js Modules Team
+      //- section(data-bespoke-backdrop='kernel')
+      //-   h1 Minimal Kernal
+      //-
+      //- section
+      //-   h2 Phase 1
+      //-   ul
+      //-     li.hide
+      //-     li Can only import ESM
+      //-     li Must have .mjs file extension
+      //-     li No support for Node.js specifier resolution algorithm
+      //-
+      //- section
+      //-   h1 That's it
 
-      section(data-bespoke-backdrop='modules-team-init')
-        h2 Formed 10 months ago
+      //- section
+      //-   h1 CJS Interop
+      //-
+      //- section.small-code
+      //-   pre
+      //-     code.language-javascript.
+      //-       // cjs.js
+      //-       module.exports = 'cjs';
+      //-
+      //-       // esm.mjs
+      //-       import { createRequire } from 'module';
+      //-
+      //-       const require = createRequire(import.meta.url);
+      //-
+      //-       const cjs = require('./cjs');
+      //-       cjs === 'cjs'; // true
 
-      section
-        h1 49 members
-
-      section
-        h3 Representation from at least 10 countries:
-        ul
-          li.hide
-          li Canada
-          li China
-          li Germany
-          li Israel
-          li Italy
-          li Japan
-          li Nigeria
-          li United Kingdom
-          li South Africa
-          li USA
-
-      section
-        h3 Representation from at least 10 corporate organizations:
-        ul
-          li.hide
-          li airbnb
-          li applitools
-          li Bloomberg
-          li Godaddy
-          li Google
-          li Groupon
-          li IBM
-          li Microsoft
-          li Mozilla
-          li NearForm
-          li Node Source
-
-      section
-        h3 Key stakeholders from at least 14 OSS projects
-        ul
-          li.hide
-          li angular
-          li babel
-          li bluebird
-          li fastify
-          li libuv
-          li jQuery
-          li jspm
-
-      section
-        h3 Key stakeholders from at least 14 OSS projects
-        ul
-          li.hide
-          li lodash
-          li Meteor
-          li npm
-          li polymer
-          li tapjs
-          li V8
-          li webpack
-
-      section
-        h3 Members of the team participate
-        h3 in at least 3 standards bodies including:
-        ul
-          li.hide
-          li tc39
-          li whatwg
-          li w3c
-
-      section(data-bespoke-backdrop='kernel')
-        h1 Minimal Kernal
-
-      section
-        h2 Phase 1
-        ul
-          li.hide
-          li Can only import ESM
-          li Must have .mjs file extension
-          li No support for Node.js specifier resolution algorithm
-
-      section
-        h1 That's it
-
-      section
-        h1 CJS Interop
-      
-      section.small-code
-        pre
-          code.language-javascript.
-            // cjs.js
-            module.exports = 'cjs';
-
-            // esm.mjs
-            import { createRequireFromPath as createRequire } from 'module';
-            import { fileURLToPath as fromPath } from 'url';
-
-            const require = createRequire(fromPath(import.meta.url));
-
-            const cjs = require('./cjs');
-            cjs === 'cjs'; // true
-
-      section
-        h2 Phase 2
-        h4 Uncontentious features to enhance UX
-
-      section
-        h2 Phase 3
-        h4 Extensible "loaders" and deliver an environment that allows user-land experimentation.
-
-      section
-        h2 Phase 4
-        h4 Addressing the user feedback gathered from the experimentation enabled by Phase 3.
+      //- section
+      //-   h2 Phase 2
+      //-   h4 Uncontentious features to enhance UX
+      //-
+      //- section
+      //-   h2 Phase 3
+      //-   h4 Extensible "loaders" and deliver an environment that allows user-land experimentation.
+      //-
+      //- section
+      //-   h2 Phase 4
+      //-   h4 Addressing the user feedback gathered from the experimentation enabled by Phase 3.
 
       //- section
         h1 Maybe import.meta.require?
@@ -630,6 +648,24 @@ html
       //- section
       //-   h1 .js will always be ambiguous
       //-
+
+      section
+        h2 What we are working on?
+        ul
+          li.hide
+          li Package Exports
+          li Conditional Exports
+          li Self-Reference
+          li JSON Modules
+          li WASM Modules
+
+      section
+        h2 Roadmap:
+        ul
+          li.hide
+          li Unflag in Node.js 13 between q4 19' and q1 20'
+          li Backport all changes to 12 LTS
+          li Unflag in 12 during Active LTS
 
       section
         h2 We are all hard at work

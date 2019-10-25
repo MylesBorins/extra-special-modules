@@ -177,3 +177,11 @@ The future
    * Will land in official mime registry as unambiguously ESM
    * Mime types are determined by file extensions
 * .js will continue to be ambiguous between all goals
+
+===
+
+Missing content
+
+* import map
+* export map
+* 
