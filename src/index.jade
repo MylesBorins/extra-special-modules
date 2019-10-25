@@ -258,48 +258,6 @@ html
       section(data-bespoke-backdrop='landed')
         h1 ESModules landed in ecma262 in 2015
 
-      section
-        h1 You can use ESM in Node.js Today!
-      
-      section
-        h1 WITH A FLAG
-
-      section
-        h2 --experimental-modules
-
-      section
-        h2 About our current implementation
-        ul
-          li.hide
-          li Getting close to stable, but could still change
-          li ECMASCript compliant implementation
-          li ESM files need to use .mjs extension
-          li Unless you set type to module in package.json
-          li Support for Bare Imports
-          li Support for dynamic import in both ESM & CJS
-
-      section
-        h2 What are the limitations?
-        ul
-          li.hide
-          li Full file path is mandetory
-          li No support for index.js
-          li Ability to import CJS, default only
-          li You cannot require('esm')
-
-      //- section
-      //-   h1 Interoperability
-      //-
-      //- section
-      //-   h2 Loading ESM from CJS
-      //-   ul
-      //-     li.hide
-      //-     li dynamic `import(esm)` in cjs
-      //-     li Cannot require(esm)
-
-      section(data-bespoke-backdrop='grumpy')
-        h2 Some of our decisions may have made people grumpy
-
       section(data-bespoke-backdrop='loader')
         h3 Please wait...
         h2 Explanation Loading
@@ -388,10 +346,10 @@ html
         h3 Implemented by embedder
 
       section
-        h1 They are not interchangeable
-
-      section
-        h1 Can result in different execution order
+        h1 You cannot simply convert CJS to ESM
+      //-
+      //- section
+      //-   h2 Can result in different execution order
 
       //- section(data-bespoke-backdrop='danger2')
       //-   h3 ⚠️  DANGER  ⚠️
@@ -401,20 +359,21 @@ html
 
       section
         h2 Specifier Resolution algorithm...
-        h3 ...is also different!
+        h3 ...is different!
 
       section
         h3 TC39 Leaves it up to hosting environment
         h2 To determine Resolution
 
       section
-        h2 Node.js's resolution algorithm supports:
+        h2 Node.js's CJS resolution algorithm supports:
         ul
           li.hide
           li Bare imports
-          li Import JSON
+          li JSON
+          li Native Dependencies
           li Optional File Extensions
-          li Import Directory
+          li Directory loading via index.js
 
       section(data-bespoke-backdrop='bear')
         h1 Currently the web does not support bare imports
@@ -510,7 +469,49 @@ html
           li module
 
       section
-        h1 import.meta to the rescue
+        h2 import.meta to the rescue
+
+      section
+        h1 You can use ESM in Node.js Today!
+      
+      section
+        h1 WITH A FLAG
+
+      section
+        h2 --experimental-modules
+
+      section
+        h2 About our current implementation
+        ul
+          li.hide
+          li Getting close to stable, but could still change
+          li ECMAScript compliant implementation
+          li ESM files need to use .mjs extension
+          li Unless you set type to module in package.json
+          li Support for Bare Imports
+          li Support for dynamic import in both ESM & CJS
+
+      section
+        h2 What are the limitations?
+        ul
+          li.hide
+          li Full file path is mandatory
+          li No support for folder resolution
+          li Ability to import CJS, default only
+          li You cannot require('esm')
+
+      //- section
+      //-   h1 Interoperability
+      //-
+      //- section
+      //-   h2 Loading ESM from CJS
+      //-   ul
+      //-     li.hide
+      //-     li dynamic `import(esm)` in cjs
+      //-     li Cannot require(esm)
+
+      section(data-bespoke-backdrop='grumpy')
+        h2 Some of our decisions may have made people grumpy
 
       //- section
       //-   h3 Introducing
