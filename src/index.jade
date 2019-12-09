@@ -717,11 +717,11 @@ html
               "name": "cool-module",
               "exports": {
                 ".": "./index.mjs",
-                "./feature": "./path/to/feature.mjs"
+                "./great-feature": "./path/to/feature.mjs"
               }
             }
-
-            import {wow} from 'cool-module/feature'
+            // index.mjs
+            import { wow } from 'cool-module/great-feature'
 
       section
         h2 Roadmap:
