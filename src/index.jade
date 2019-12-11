@@ -709,6 +709,23 @@ html
             }
 
       section.small-code
+        h3 Conditional Exports (Experimental)
+        h4 https://github.com/nodejs/node/pull/29978/
+        pre
+          code.language-javascript.
+            {
+              "main": "index-legacy.cjs",
+              "type": "module",
+              "exports": {
+                ".": {
+                  "import": "./index.js",
+                  "require": "./index.cjs",
+                  "browser": "./index-browser.js"
+                }
+              }
+            }
+
+      section.small-code
         h3 Self Reference (Experimental)
         h4 --experimental-resolve-self
         pre
