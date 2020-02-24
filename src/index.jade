@@ -158,7 +158,7 @@ html
         h3 With your host
         h4
           a(href='https://twitter.com/MylesBorins') @MylesBorins
-        p  Node+JS Interactive 2019
+        p  Fullstack Academy
         
       section(data-bespoke-backdrop='hello')
         h1 Bonjour
@@ -169,9 +169,9 @@ html
       
       section
         h3 I am gainfully employed by Google as a Developer Advocate
-        h4 Focusing on the Node.js ecosystem and GCP
+          h4 Doing lots of JavaScript (and a few other things too)
         
-        img(src='images/gcp.png' alt='Google Cloud Platform' style='background-color:white;')
+        //- img(src='images/gcp.png' alt='Google Cloud Platform' style='background-color:white;')
         
         h5.headroom The opinions expressed in this talk are solely my own
 
@@ -372,7 +372,7 @@ html
         h2 To determine Resolution
 
       section
-        h2 Node.js's CJS resolution algorithm supports:
+        h2 Node.js's CJS loader supports:
         ul
           li.hide
           li Bare imports
@@ -403,11 +403,13 @@ html
                 "lodash": "/node_modules/lodash-es/lodash.js"
               }
             }
+            ---
+            import 'lodash';
 
       section
         h2 import-maps
         h4.headroom You can use in Chrome today
-        h2 chrome://flags
+        h2 chrome://flags/#enable-built-in-module-infra
         h4.headroom Built-in module infra and import maps
       //- section(data-bespoke-backdrop='danger3')
       //-   h3 ⚠️  DANGER  ⚠️
@@ -440,25 +442,25 @@ html
         h3 Denoted with Pragma
 
       section
-        h2 Module goal has extra grammar changes
+        h2 ESModule goal has extra grammar changes
         ul
           li.hide
           li No HTML Comments
           li Await is a reserved keyword
           li Divergence may increase over time
 
-      section
-        h3 ESModules do not have in source way
-        h2 of determining goal
-
-      section
-        h2 Potential Future Goals
-        ul
-          li.hide
-          li WASM
-          li HTML Modules
-          li WebPackage
-          li BinaryAST
+      //- section
+      //-   h3 ESModules do not have in source way
+      //-   h2 of determining goal
+      //-
+      //- section
+      //-   h2 Potential Future Goals
+      //-   ul
+      //-     li.hide
+      //-     li Wasm
+      //-     li HTML Modules
+      //-     li WebPackage
+      //-     li BinaryAST
 
       //- section
       //-   h1 So what happened next?
@@ -469,7 +471,7 @@ html
       //-   h3 ⚠️  DANGER  ⚠️
       //-
       section
-        h3 ESM does not have a way
+        h3 ESModules does not have a way
         h2 to inject lexically scope variables
 
       section
@@ -486,6 +488,7 @@ html
 
       section
         h2 import.meta to the rescue
+        h3 🎉 `import.meta.url`  🎉
 
       section
         h1 You can use ESM in Node.js Today!
@@ -497,16 +500,60 @@ html
         h2 in Node.js 13
 
       section
+        h3 Recently backported (still with a flag)
+        h2 in Node.js 12
+
+      section
         h2 About our current implementation
         ul
           li.hide
-          li Getting close to stable, but could still change
           li ECMAScript compliant implementation
           li ESM files need to use .mjs extension
           li Unless you set type to module in package.json
           li Support for Bare Imports
           li Support for dynamic import in both ESM & CJS
           li import.meta.url
+          li Package Exports & Conditional Exports
+
+      section.small-code
+        h2 Package Exports
+        pre
+          code.language-javascript.
+            {
+              "main": "index-legacy.cjs",
+              "type": "module",
+              "exports": {
+                ".": "./index.js",
+                "./cjs": "./index.cjs"
+              }
+            }
+
+      section.small-code
+        h3 Conditional Exports
+        pre
+          code.language-javascript.
+            {
+              "main": "index-legacy.cjs",
+              "exports": {
+                "browser": "./index-browser.js"
+                "import": "./index.mjs",
+                "default": "./index.js",
+              }
+            }
+
+      section.small-code
+        h3 Self Reference
+        pre
+          code.language-javascript.
+            {
+              "name": "cool-module",
+              "exports": {
+                ".": "./index.mjs",
+                "./great-feature": "./path/to/feature.mjs"
+              }
+            }
+            // index.mjs
+            import { wow } from 'cool-module/great-feature'
 
       section
         h2 What are the limitations?
@@ -518,144 +565,6 @@ html
           li Only experimental support for `import 'json'`
           li No support for `require('esm')`
 
-      //- section
-      //-   h1 Interoperability
-      //-
-      //- section
-      //-   h2 Loading ESM from CJS
-      //-   ul
-      //-     li.hide
-      //-     li dynamic `import(esm)` in cjs
-      //-     li Cannot require(esm)
-
-      //- section(data-bespoke-backdrop='grumpy')
-      //-   h2 Some of our decisions may have made people grumpy
-
-      //- section
-      //-   h3 Introducing
-      //-   h2 The Node.js Modules Team
-      //-
-      //- section(data-bespoke-backdrop='modules-team-init')
-      //-   h2 Formed 10 months ago
-      //-
-      //- section
-      //-   h1 49 members
-      //-
-      //- section
-      //-   h3 Representation from at least 10 countries:
-      //-   ul
-      //-     li.hide
-      //-     li Canada
-      //-     li China
-      //-     li Germany
-      //-     li Israel
-      //-     li Italy
-      //-     li Japan
-      //-     li Nigeria
-      //-     li United Kingdom
-      //-     li South Africa
-      //-     li USA
-      //-
-      //- section
-      //-   h3 Representation from at least 10 corporate organizations:
-      //-   ul
-      //-     li.hide
-      //-     li airbnb
-      //-     li applitools
-      //-     li Bloomberg
-      //-     li Godaddy
-      //-     li Google
-      //-     li Groupon
-      //-     li IBM
-      //-     li Microsoft
-      //-     li Mozilla
-      //-     li NearForm
-      //-     li Node Source
-      //-
-      //- section
-      //-   h3 Key stakeholders from at least 14 OSS projects
-      //-   ul
-      //-     li.hide
-      //-     li angular
-      //-     li babel
-      //-     li bluebird
-      //-     li fastify
-      //-     li libuv
-      //-     li jQuery
-      //-     li jspm
-      //-
-      //- section
-      //-   h3 Key stakeholders from at least 14 OSS projects
-      //-   ul
-      //-     li.hide
-      //-     li lodash
-      //-     li Meteor
-      //-     li npm
-      //-     li polymer
-      //-     li tapjs
-      //-     li V8
-      //-     li webpack
-      //-
-      //- section
-      //-   h3 Members of the team participate
-      //-   h3 in at least 3 standards bodies including:
-      //-   ul
-      //-     li.hide
-      //-     li tc39
-      //-     li whatwg
-      //-     li w3c
-
-      //- section(data-bespoke-backdrop='kernel')
-      //-   h1 Minimal Kernal
-      //-
-      //- section
-      //-   h2 Phase 1
-      //-   ul
-      //-     li.hide
-      //-     li Can only import ESM
-      //-     li Must have .mjs file extension
-      //-     li No support for Node.js specifier resolution algorithm
-      //-
-      //- section
-      //-   h1 That's it
-
-      //- section
-      //-   h1 CJS Interop
-      //-
-      //- section.small-code
-      //-   pre
-      //-     code.language-javascript.
-      //-       // cjs.js
-      //-       module.exports = 'cjs';
-      //-
-      //-       // esm.mjs
-      //-       import { createRequire } from 'module';
-      //-
-      //-       const require = createRequire(import.meta.url);
-      //-
-      //-       const cjs = require('./cjs');
-      //-       cjs === 'cjs'; // true
-
-      //- section
-      //-   h2 Phase 2
-      //-   h4 Uncontentious features to enhance UX
-      //-
-      //- section
-      //-   h2 Phase 3
-      //-   h4 Extensible "loaders" and deliver an environment that allows user-land experimentation.
-      //-
-      //- section
-      //-   h2 Phase 4
-      //-   h4 Addressing the user feedback gathered from the experimentation enabled by Phase 3.
-
-      //- section
-        h1 Maybe import.meta.require?
-
-      //- section
-      //-   h1 The Future
-      //-
-      //- section
-      //-   h2 ESM is one of many goals
       //-
       //- section
       //-   h3 .mjs is in IETF Standard track
@@ -672,81 +581,14 @@ html
         h2 What we are working on?
         ul
           li.hide
-          li Package Exports
-          li Conditional Exports
-          li Self-Reference
           li JSON Modules
           li WASM Modules
-
-      section.small-code
-        h2 Package Exports
-        pre
-          code.language-javascript.
-            {
-              "main": "index-legacy.cjs",
-              "type": "module",
-              "exports": {
-                ".": "./index.js",
-                "./cjs": "./index.cjs"
-              }
-            }
-
-      section.small-code
-        h3 Conditional Exports (Experimental)
-        h4 https://github.com/nodejs/node/pull/29978/
-        pre
-          code.language-javascript.
-            {
-              "main": "index-legacy.cjs",
-              "type": "module",
-              "exports": {
-                ".": {
-                  "module": "./index.js",
-                  "node": "./index.cjs",
-                  "browser": "./index-browser.js"
-                }
-              }
-            }
-
-      section.small-code
-        h3 Conditional Exports (Experimental)
-        h4 https://github.com/nodejs/node/pull/29978/
-        pre
-          code.language-javascript.
-            {
-              "main": "index-legacy.cjs",
-              "type": "module",
-              "exports": {
-                ".": {
-                  "import": "./index.js",
-                  "require": "./index.cjs",
-                  "browser": "./index-browser.js"
-                }
-              }
-            }
-
-      section.small-code
-        h3 Self Reference (Experimental)
-        h4 --experimental-resolve-self
-        pre
-          code.language-javascript.
-            {
-              "name": "cool-module",
-              "exports": {
-                ".": "./index.mjs",
-                "./great-feature": "./path/to/feature.mjs"
-              }
-            }
-            // index.mjs
-            import { wow } from 'cool-module/great-feature'
 
       section
         h2 Roadmap:
         ul
           li.hide
-          li Unflag Conditional Exports in Q1 20'
-          li Backport all changes to 12 LTS in Q1 20'
-          li Unflag in 12 in Q2 20'
+          li Aiming to unflag in 12.x around April
 
       section
         h2 We are all hard at work
