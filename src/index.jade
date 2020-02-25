@@ -161,7 +161,7 @@ html
         p  Fullstack Academy
         
       section(data-bespoke-backdrop='hello')
-        h1 Bonjour
+        h1 Oh Hai
         
       section
         h1 My Name is Myles
@@ -169,7 +169,8 @@ html
       
       section
         h3 I am gainfully employed by Google as a Developer Advocate
-          h4 Doing lots of JavaScript (and a few other things too)
+        h4 Doing lots of JavaScript
+        h3 and a few other things too
         
         //- img(src='images/gcp.png' alt='Google Cloud Platform' style='background-color:white;')
         
@@ -293,7 +294,7 @@ html
         h3 ESModules specify
         h2 Asynchronous Load
         h2 +
-        h2 Synchronous Execution
+        h2 Synchronous(ish) Execution
 
       section
         h2 Load
@@ -301,12 +302,16 @@ html
           li.hide
           li Fetch source texts for *all* the module graph
           li Resolve specifiers within source texts
+          li Recursive + Async
+          li Executed in pre-order traversal (Root, Left, Right)
+          
 
       section
         h2 Link
         ul
           li.hide
           li Module Graph must be in memory
+          li Resolve cycles and prepare graph for execution
           li Executed in pre-order traversal (Root, Left, Right)
 
       section(data-bespoke-backdrop='graph')
@@ -332,7 +337,8 @@ html
         h2 Execution
         ul
           li.hide
-          li Requires linked be completed
+          li Requires linked graph
+          li Synchronus(ish)
           li Done in post-order traversal (Left, Right, Root)
 
       section(data-bespoke-backdrop='graph')
@@ -348,7 +354,7 @@ html
         h4 come ask me about this later
 
       section
-        h2 The Loader is not specified
+        h2 The Loader is not entirely specified
         h3 Implemented by embedder
 
       section
@@ -403,13 +409,14 @@ html
                 "lodash": "/node_modules/lodash-es/lodash.js"
               }
             }
-            ---
-            import 'lodash';
+            // index.mjs
+            import lodash from 'lodash';
+            import moment from 'moment';
 
       section
         h2 import-maps
         h4.headroom You can use in Chrome today
-        h2 chrome://flags/#enable-built-in-module-infra
+        h5 chrome://flags/#enable-built-in-module-infra
         h4.headroom Built-in module infra and import maps
       //- section(data-bespoke-backdrop='danger3')
       //-   h3 ⚠️  DANGER  ⚠️
@@ -581,8 +588,11 @@ html
         h2 What we are working on?
         ul
           li.hide
+          li Better loader support
+          li Performance Optimizations
           li JSON Modules
-          li WASM Modules
+          li Module Attributes
+          li Standardizing .mjs
 
       section
         h2 Roadmap:
