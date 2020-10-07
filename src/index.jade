@@ -168,11 +168,9 @@ html
         img.headroom(src='images/me.jpg' alt='itsa me!' width='200px' height='200px')
       
       section
-        h3 I am gainfully employed by Google as a Developer Advocate
-        h4 Doing lots of JavaScript
-        h3 and a few other things too
-        
-        //- img(src='images/gcp.png' alt='Google Cloud Platform' style='background-color:white;')
+        h3 I am gainfully employed by GitHub as a Product Manager
+        h4 Focused on npm
+        h3 and end-to-end developer experiences
         
         h5.headroom The opinions expressed in this talk are solely my own
 
@@ -247,7 +245,8 @@ html
         h2 a variant of CommmonJS
 
       section
-        h1 Don't forget AMD
+        h2 Don't forget AMD
+        img(src="./images/amd.png" alt="https://github.com/volojs/create-template/blob/master/www/app.js" style="margin-top: 2em; height: 70%;")
       
       section
         h2 Only "spec'd" by requireJS
@@ -382,7 +381,7 @@ html
         ul
           li.hide
           li Bare imports
-          li JSON
+          li JSON Modules
           li Native Dependencies
           li Optional File Extensions
           li Directory loading via index.js
@@ -416,8 +415,7 @@ html
       section
         h2 import-maps
         h4.headroom You can use in Chrome today
-        h5 chrome://flags/#enable-built-in-module-infra
-        h4.headroom Built-in module infra and import maps
+        h5 chrome://flags/#enable-experimental-productivity-features
       //- section(data-bespoke-backdrop='danger3')
       //-   h3 ⚠️  DANGER  ⚠️
       //-   h2 Behavior Difference
@@ -504,26 +502,32 @@ html
         h1 WITHOUT A FLAG
 
       section
-        h2 in Node.js 13
+        h2 in Node.js 12 and 14
 
       section
-        h3 Recently backported (still with a flag)
-        h2 in Node.js 12
-
-      section
-        h2 About our current implementation
+        h2 About our current ESM implementation
         ul
           li.hide
           li ECMAScript compliant implementation
           li ESM files need to use .mjs extension
           li Unless you set type to module in package.json
-          li Support for Bare Imports
-          li Support for dynamic import in both ESM & CJS
+          li named imports from esm + cjs (limited support)
           li import.meta.url
-          li Package Exports & Conditional Exports
+          li Top-Level Await (14 only)
+
+      section
+        h2 Both CJS and ESM support
+          li.hide
+          li Builtin Modules
+          li Bare Imports
+          li Dynamic import
+          li Subpath Exports and Imports
+          li Export Patterns
+          li Conditional Exports
+          li Self-referencing
 
       section.small-code
-        h2 Package Exports
+        h2 Subpath Exports
         pre
           code.language-javascript.
             {
@@ -562,14 +566,25 @@ html
             // index.mjs
             import { wow } from 'cool-module/great-feature'
 
+      section.small-code
+        h3 Subpath Imports + Export Patterns
+          pre
+            code.language-javascript.
+              {
+                "imports": {
+                  "#internal/*": "./lib/internal/*.mjs"
+                }
+              }
+              // index.mjs
+              import { fft } from '#internal/science';
+
       section
         h2 What are the limitations?
         ul
           li.hide
-          li Full file path is mandatory
-          li No support for folder resolution
-          li No named imports for `import 'cjs'`
-          li Only experimental support for `import 'json'`
+          li Full specifier path is mandatory
+          li No support for index.js resolution
+          li Limited named import support for `import 'cjs'`
           li No support for `require('esm')`
 
       //-
@@ -584,27 +599,24 @@ html
       //-   h1 .js will always be ambiguous
       //-
 
-      section
-        h2 What we are working on?
-        ul
-          li.hide
-          li Better loader support
-          li Performance Optimizations
-          li JSON Modules
-          li Module Attributes
-          li Standardizing .mjs
+      //- section
+      //-   h2 What we are working on?
+      //-   ul
+      //-     li.hide
+      //-     li Better loader support
+      //-     li Performance Optimizations
+      //-     li JSON Modules
+      //-     li Module Attributes
+      //-     li Standardizing .mjs
 
       section
-        h2 Roadmap:
-        ul
-          li.hide
-          li Aiming to unflag in 12.x around April
-
-      section
-        h2 We are all hard at work
+        h2 We have all been hard at work
         h3 to ensure modules
         h4 is a best in class experience in Node.js
         h3 and a good base for universal packages
+
+      section
+        h2 Feels like we are almost there
 
       section
         h2 Thank You
